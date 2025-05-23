@@ -15,4 +15,29 @@ type PostResponse = {
     posts: Post[]
 }
 
-export {PostResponse, Post}
+type CommentUser = {
+  id: number;
+  username: string;
+};
+
+type Comment = {
+  id: number;
+  body: string;
+  postId: number;
+  likes: number;
+  user: CommentUser;
+};
+
+type CommentsResponse = {
+  comments: Comment[];
+  total: number;
+  skip: number;
+  limit: number;
+};
+
+type PostWithDetails = Post & {
+  tags: string[];
+};
+
+
+export {PostResponse, Post, Reaction, CommentUser, Comment, CommentsResponse, PostWithDetails}
