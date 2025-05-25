@@ -3,19 +3,19 @@ import { dummyApi } from "@/api";
 import { Post, PostResponse } from "@/types";
 import List from "@/Components/Posts/List";
 
-const Fiction =() => {
-    const [posts, setPosts] = useState<Post[]>([]);
+const Fiction = () => {
+  const [posts, setPosts] = useState<Post[]>([]);
 
-    const fetchPosts = async () => {
-        const { data } = await dummyApi.get<PostResponse>("/posts/tag/fiction");
-        setPosts(data.posts);
-    };
+  const fetchPosts = async () => {
+    const { data } = await dummyApi.get<PostResponse>(`posts/tag/fiction`);
+    setPosts(data.posts);
+  };
 
-    useEffect(() => {
-        fetchPosts();
-    }, []);
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
-    return <List posts={posts} />;
+  return <List posts={posts} />;
 };
 
 export default Fiction;
