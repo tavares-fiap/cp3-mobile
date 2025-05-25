@@ -15,12 +15,21 @@ type PostResponse = {
     posts: Post[]
 }
 
+type PostDetails = {
+    id: number;
+    title: string;
+    body: string;
+    reactions: Reaction;
+    views: number
+    tags: string[];
+}
+
 type CommentUser = {
   id: number;
   username: string;
 };
 
-type Comment = {
+type PostComment = {
   id: number;
   body: string;
   postId: number;
@@ -29,15 +38,13 @@ type Comment = {
 };
 
 type CommentsResponse = {
-  comments: Comment[];
+  comments: PostComment[];
   total: number;
   skip: number;
   limit: number;
 };
 
-type PostWithDetails = Post & {
-  tags: string[];
-};
 
 
-export {PostResponse, Post, Reaction, CommentUser, Comment, CommentsResponse, PostWithDetails}
+
+export {PostResponse, Post, Reaction, CommentUser, PostComment, CommentsResponse, PostDetails}

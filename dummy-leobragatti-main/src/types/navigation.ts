@@ -4,9 +4,9 @@ type Home = {
   Fiction: undefined;
 };
 
-type RootStackParamList = {
+type RootStack = {
   MainTabs: NavigatorScreenParams<Home>;
-  PostDetail: { postId: number };
+  PostDetails: { postId: number };
 };
 
-export { Home , RootStackParamList};
+export { Home , RootStack};
