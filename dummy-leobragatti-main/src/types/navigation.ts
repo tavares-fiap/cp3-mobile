@@ -9,4 +9,4 @@ type RootStack = {
   PostDetails: { postId: number };
 };
 
-export { Home , RootStack};
+export { Home, RootStack };

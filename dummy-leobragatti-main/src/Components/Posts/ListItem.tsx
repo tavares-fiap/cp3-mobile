@@ -52,14 +52,14 @@ const styles = StyleSheet.create({
   reactions: {
     flex: 1,
     flexDirection: "row",
-    gap: 10,
+    gap: 8,
   },
   touchable: {
-    marginBottom: 10, 
+    marginBottom: 10,
     backgroundColor: "#fff",
     borderRadius: 8,
-    elevation: 2, 
-    shadowColor: "#000", 
+    elevation: 2,
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.1,
     shadowRadius: 2,

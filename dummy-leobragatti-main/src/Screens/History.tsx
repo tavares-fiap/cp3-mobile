@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { dummyApi } from "@/api";
 import { Post, PostResponse } from "@/types";
-
 import List from "@/Components/Posts/List";
 
 const History = () => {

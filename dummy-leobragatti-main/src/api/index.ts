@@ -4,4 +4,4 @@ const dummyApi = axios.create({
     baseURL: "https://dummyjson.com"
 })
 
-export {dummyApi}
+export { dummyApi }

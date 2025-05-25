@@ -1,3 +1,8 @@
+# Integrantes
+Pedro Henrique Pedrosa Tavares - RM97877
+Thiago Jardim de Oliveira - RM551624
+
+
 # Usando API do DummyJson
 
 A proposta deste projeto é mostrar posts contidos de história e ficção contidos no DummyJson.
