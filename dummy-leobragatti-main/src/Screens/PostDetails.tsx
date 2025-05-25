@@ -1,36 +1,35 @@
 import { useEffect, useState } from "react";
 import { dummyApi } from "@/api";
-import { CommentsResponse, Post, PostResponse, PostDetails, PostComment } from "@/types";
+import { CommentsResponse, PostDetails, PostComment } from "@/types";
 import { RootStack } from "@/types/navigation";
-
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { StyleSheet, Text, View } from "react-native";
+import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faThumbsUp, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faCommentAlt, faTags, faThumbsUp, faUser } from "@fortawesome/free-solid-svg-icons";
 
 type PostDetailsRoute = RouteProp<RootStack, "PostDetails">;
 
 const PostDetail = () => {
-    const route = useRoute<PostDetailsRoute>();
-    const { postId } = route.params;
+  const route = useRoute<PostDetailsRoute>();
+  const { postId } = route.params;
 
-    const [post, setPost] = useState<PostDetails | null>(null);
-    const [comments, setComments] = useState<PostComment[]>([]);
+  const [post, setPost] = useState<PostDetails | null>(null);
+  const [comments, setComments] = useState<PostComment[]>([]);
 
-    const fetchPosts = async () => {
-        const { data } = await dummyApi.get<PostDetails>(`/posts/${postId}`);
-        setPost(data);
-    };
+  const fetchPosts = async () => {
+    const { data } = await dummyApi.get<PostDetails>(`/posts/${postId}`);
+    setPost(data);
+  };
 
-    const fetchComments = async () => {
-        const { data } = await dummyApi.get<CommentsResponse>(`/comments/post/${postId}`)
-        setComments(data.comments);
-    }
+  const fetchComments = async () => {
+    const { data } = await dummyApi.get<CommentsResponse>(`/comments/post/${postId}`)
+    setComments(data.comments);
+  }
 
-    useEffect(() => {
-      fetchPosts();
-      fetchComments();
-    }, [postId]);
+  useEffect(() => {
+    fetchPosts();
+    fetchComments();
+  }, [postId]);
 
   const renderCommentItem = ({ item }: { item: PostComment }) => (
     <View style={styles.commentItem}>
@@ -46,8 +45,48 @@ const PostDetail = () => {
     </View>
   );
 
-    
-    return <></>
+  if (!post) {
+    return (
+      <View style={styles.centered}>
+        <Text>Carregando post...</Text>
+      </View>
+    );
+  }
+
+  return (
+    <ScrollView style={styles.container}>
+      <Text style={styles.title}>{post.title}</Text>
+
+      <View style={styles.tagsContainer}>
+        <FontAwesomeIcon icon={faTags} size={16} color="#6c757d" />
+        {post.tags.map((tag, index) => (
+          <Text key={index} style={styles.tag}>
+            {tag}
+          </Text>
+        ))}
+      </View>
+
+      <Text style={styles.body}>{post.body}</Text>
+
+      <View style={styles.separator} />
+
+      <View style={styles.commentsSection}>
+        <FontAwesomeIcon icon={faCommentAlt} size={18} color="#333" />
+        <Text style={styles.commentsTitle}>Comentários ({comments.length})</Text>
+      </View>
+
+      {comments.length > 0 ? (
+        <FlatList
+          data={comments}
+          renderItem={renderCommentItem}
+          keyExtractor={(item) => item.id.toString()}
+          scrollEnabled={false}
+        />
+      ) : (
+        <Text style={styles.noCommentsText}>Nenhum comentário ainda.</Text>
+      )}
+    </ScrollView>
+  )
 }
 
 
@@ -64,11 +103,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 20,
   },
-  errorText: {
-    color: "red",
-    fontSize: 16,
-    textAlign: 'center',
-  },
+
   title: {
     fontSize: 24,
     fontWeight: "bold",
@@ -79,7 +114,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: 'center',
     marginBottom: 16,
-    flexWrap: 'wrap', // Permite que as tags quebrem linha
+    flexWrap: 'wrap',
   },
   tag: {
     backgroundColor: "#e9ecef",
@@ -88,7 +123,7 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     paddingHorizontal: 8,
     marginRight: 6,
-    marginBottom: 6, // Espaço caso quebre linha
+    marginBottom: 6,
     fontSize: 12,
   },
   body: {
