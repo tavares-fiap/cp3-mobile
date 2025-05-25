@@ -1,28 +1,28 @@
 type Reaction = {
   likes: number;
-  dislikes: number
-}
+  dislikes: number;
+};
 
 type Post = {
   id: number;
   title: string;
   body: string;
   reactions: Reaction;
-  views: number
-}
+  views: number;
+};
 
 type PostResponse = {
-  posts: Post[]
-}
+  posts: Post[];
+};
 
 type PostDetails = {
   id: number;
   title: string;
   body: string;
   reactions: Reaction;
-  views: number
+  views: number;
   tags: string[];
-}
+};
 
 type CommentUser = {
   id: number;
@@ -44,4 +44,12 @@ type CommentsResponse = {
   limit: number;
 };
 
-export { PostResponse, Post, Reaction, CommentUser, PostComment, CommentsResponse, PostDetails }
+export {
+  PostResponse,
+  Post,
+  Reaction,
+  CommentUser,
+  PostComment,
+  CommentsResponse,
+  PostDetails,
+};

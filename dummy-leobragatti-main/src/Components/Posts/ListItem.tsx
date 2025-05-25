@@ -10,7 +10,6 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStack } from "@/types/navigation";
 
-
 type ListItemProps = {
   post: Post;
 };
@@ -20,8 +19,8 @@ type PostNavigationProp = NativeStackNavigationProp<RootStack, "MainTabs">;
 const ListItem = ({ post }: ListItemProps) => {
   const navigation = useNavigation<PostNavigationProp>();
   const handlePress = () => {
-    navigation.navigate("PostDetails", { postId: post.id })
-  }
+    navigation.navigate("PostDetails", { postId: post.id });
+  };
 
   return (
     <TouchableOpacity onPress={handlePress} style={styles.touchable}>
