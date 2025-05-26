@@ -2,6 +2,9 @@
 - Pedro Henrique Pedrosa Tavares - RM97877
 - Thiago Jardim de Oliveira - RM551624
 
+# Importante
+Mudar o diretório para a pasta 'dummy-leobragatti-main' para dar o comando <br>
+`npm install`
 
 # Usando API do DummyJson
 
